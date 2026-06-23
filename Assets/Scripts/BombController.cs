@@ -1,10 +1,10 @@
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class StoneController : MonoBehaviour
+public class BombController : MonoBehaviour
 {
 	[SerializeField] GameObject genarator;
+	[SerializeField] GameObject Breakwall;
 	float speedx;
 	float speedy;
 	Vector2 startPos;
@@ -27,20 +27,28 @@ public class StoneController : MonoBehaviour
 			this.speedx = swipeLengthx / 5000.0f;
 			this.speedy = swipeLengthy / 5000.0f;
 		}
-		transform.Translate(-speedx,-speedy, 0); //ˆÚ“®
+		transform.Translate(-speedx, -speedy, 0); //ˆÚ“®
 	}
+
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
-		if (collision.gameObject.CompareTag("human"))
+		if (collision.gameObject.CompareTag("BreakWall"))
+		{
+			genarator.GetComponent<Generator>().ball(false);
+			Destroy(collision.gameObject);
+			Destroy(gameObject);
+		}
+		else if (collision.gameObject.CompareTag("human"))
 		{
 
 		}
 		else
 		{
-			genarator.GetComponent<Generator>().stone(false);
+			genarator.GetComponent<Generator>().bomb(false);
 			genarator.GetComponent<Generator>().ball(false);
 			Destroy(gameObject);
 		}
-	}
-}
 
+	}
+
+}

@@ -1,12 +1,12 @@
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class StoneController : MonoBehaviour
+public class SuperBallCont : MonoBehaviour
 {
 	[SerializeField] GameObject genarator;
 	float speedx;
 	float speedy;
+	int boundcounter;
 	Vector2 startPos;
 	private void Update()
 	{
@@ -27,7 +27,7 @@ public class StoneController : MonoBehaviour
 			this.speedx = swipeLengthx / 5000.0f;
 			this.speedy = swipeLengthy / 5000.0f;
 		}
-		transform.Translate(-speedx,-speedy, 0); //ˆÚ“®
+		transform.Translate(-speedx, -speedy, 0); //ˆÚ“®
 	}
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
@@ -35,12 +35,27 @@ public class StoneController : MonoBehaviour
 		{
 
 		}
+		else if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("BreakWall"))
+		{
+			speedx = speedx * -1;
+			boundcounter++;
+			if (boundcounter == 10)
+				Destroy(gameObject);
+		}
+		else if(collision.gameObject.CompareTag("yuka"))
+		{
+			speedy = speedy * -1;
+			boundcounter++;
+			if(boundcounter == 10)
+			{
+				Destroy(gameObject);
+			}
+		}
 		else
 		{
-			genarator.GetComponent<Generator>().stone(false);
+			genarator.GetComponent<Generator>().sball(false);
 			genarator.GetComponent<Generator>().ball(false);
 			Destroy(gameObject);
 		}
 	}
 }
-
