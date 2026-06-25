@@ -180,3 +180,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StoneController
   genarator: {fileID: 3286007117957478650, guid: 3d7f67c204d21cc4ba5d43dd29717d83, type: 3}
+  manager: {fileID: 4174529117807987132, guid: 4371a7c9dd64fe94eb61ccd84e3fd655, type: 3}
