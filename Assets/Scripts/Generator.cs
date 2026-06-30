@@ -6,6 +6,8 @@ public class Generator : MonoBehaviour
 	[SerializeField] GameObject Stone;
 	[SerializeField] GameObject Bomb;
 	[SerializeField] GameObject Sball;
+	[SerializeField] AudioClip BGM;
+	AudioSource aud;
 	static bool BallCount;
 	static bool StoneCount;
 	static bool BombCount;
@@ -25,6 +27,11 @@ public class Generator : MonoBehaviour
 	public void sball(bool sballcount)
 	{
 		SuperBallCount = sballcount;
+	}
+	private void Start()
+	{
+		aud = GetComponent<AudioSource>();
+		aud.PlayOneShot(BGM);
 	}
 
 	private void Update()

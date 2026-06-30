@@ -27,8 +27,8 @@ public class BombController : MonoBehaviour
 				float swipeLengthy = endPos.y - this.startPos.y;
 
 				//スワイプの長さを初速度に変換する
-				this.speedx = swipeLengthx / 5000.0f;
-				this.speedy = swipeLengthy / 5000.0f;
+				this.speedx = swipeLengthx / 15000.0f;
+				this.speedy = swipeLengthy / 15000.0f;
 				ThrowBall = true;
 			}
 		}
